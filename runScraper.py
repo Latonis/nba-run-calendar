@@ -20,7 +20,7 @@ def scrapeRunSite(matchups):
 
     for matchup in matchups:
         url = f'{racesURL.format(matchup["city"], matchup["state"], matchup["date"])}'
-        print(url)
+        # print(url)
         req =  requests.get(url, headers = headers)
         # print(req)
         soup = BeautifulSoup(req.content, 'html.parser')
@@ -28,9 +28,8 @@ def scrapeRunSite(matchups):
         if (len(tables) == 3):
             continue
         df_list = pd.read_html(req.content)
-        df1 = df_list[0].iloc[:, 0:3]
         print(f"{matchup['date']}: {matchup['teams']}")
-        print(df1)
+        print(df_list[0][['No', 'Race Date', 'Race']])
         print()
 
 if __name__ == "__main__":
