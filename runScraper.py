@@ -4,7 +4,7 @@ from nbaScraper import scrapeNBASite
 import pandas as pd
 import time
 # city-state 08-17-2022-to-08-12-2022/
-racesURL = "http://runningintheusa.com/classic/list/{}-{}/{}/"
+racesURL = "https://runningintheusa.com/classic/list/{}-{}/{}/"
 
 def main():
     matchups = scrapeNBASite()
@@ -27,12 +27,14 @@ def scrapeRunSite(matchups):
         soup = BeautifulSoup(req.content, 'html.parser')
         tables = soup.find("table", {"class": "table table-bordered table-condensed"})
         if (len(tables) == 3):
+            time.sleep(1)
             continue
         df_list = pd.read_html(req.content)
         print(f"# Date Range: {matchup['date']}: {matchup['teams']} on {matchup['gameDate']}")
         print(f"{df_list[0][['Race Date', 'Race']].to_markdown()}")
-        time.sleep(.2)
         print()
+        time.sleep(2)
+
 
 if __name__ == "__main__":
     main()
