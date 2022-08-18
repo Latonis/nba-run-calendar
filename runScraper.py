@@ -2,8 +2,9 @@ from bs4 import BeautifulSoup
 import requests
 from nbaScraper import scrapeNBASite
 import pandas as pd
+import time
 # city-state 08-17-2022-to-08-12-2022/
-racesURL = "https://runningintheusa.com/classic/list/{}-{}/{}/"
+racesURL = "http://runningintheusa.com/classic/list/{}-{}/{}/"
 
 def main():
     matchups = scrapeNBASite()
@@ -28,8 +29,9 @@ def scrapeRunSite(matchups):
         if (len(tables) == 3):
             continue
         df_list = pd.read_html(req.content)
-        print(f"{matchup['date']}: {matchup['teams']}")
-        print(df_list[0][['No', 'Race Date', 'Race']])
+        print(f"# Date Range: {matchup['date']}: {matchup['teams']} on {matchup['gameDate']}")
+        print(f"{df_list[0][['Race Date', 'Race']].to_markdown()}")
+        time.sleep(.2)
         print()
 
 if __name__ == "__main__":

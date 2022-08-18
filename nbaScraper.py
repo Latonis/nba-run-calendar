@@ -64,7 +64,8 @@ def scrapeNBASite():
                     "date": f"{formattedBefore}-to-{formattedAfter}",
                     "state": teamToState[key],
                     "city": key,
-                    "teams": playing
+                    "teams": playing,
+                    "gameDate": date.strftime("%m-%d-%Y")
                 })
     return results
 if __name__ == "__main__":
