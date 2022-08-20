@@ -4,7 +4,7 @@ from nbaScraper import scrapeNBASite
 import pandas as pd
 import time
 # city-state 08-17-2022-to-08-12-2022/
-racesURL = "https://runningintheusa.com/classic/list/{}-{}/{}/"
+racesURL = "https://runningintheusa.com/classic/list/{}-{}/{}/half-marathon/"
 
 def main():
     matchups = scrapeNBASite()
